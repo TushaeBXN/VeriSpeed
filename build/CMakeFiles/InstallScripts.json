@@ -1,0 +1,11 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/dadsmacpro/VeriSpeed/build/cmake_install.cmake",
+		"/Users/dadsmacpro/VeriSpeed/build/JUCE/cmake_install.cmake",
+		"/Users/dadsmacpro/VeriSpeed/build/JUCE/modules/cmake_install.cmake",
+		"/Users/dadsmacpro/VeriSpeed/build/JUCE/extras/Build/cmake_install.cmake",
+		"/Users/dadsmacpro/VeriSpeed/build/JUCE/extras/Build/juceaide/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

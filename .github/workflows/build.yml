@@ -1,0 +1,55 @@
+name: Build VeriSpeed VST3
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:   # allows manual trigger from GitHub UI
+
+jobs:
+  build-windows:
+    name: Windows VST3 (MSVC)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Clone JUCE 8.0.7
+        run: git clone https://github.com/juce-framework/JUCE.git --branch 8.0.7 --depth 1
+
+      - name: Configure (CMake)
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Upload VST3 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: VeriSpeed-Windows-VST3
+          path: build/VeriSpeed_artefacts/Release/VST3/VeriSpeed.vst3
+          retention-days: 30
+
+  build-macos:
+    name: macOS VST3 (AppleClang)
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Clone JUCE 8.0.7
+        run: git clone https://github.com/juce-framework/JUCE.git --branch 8.0.7 --depth 1
+
+      - name: Configure (CMake)
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Upload VST3 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: VeriSpeed-macOS-VST3
+          path: build/VeriSpeed_artefacts/Release/VST3/VeriSpeed.vst3
+          retention-days: 30

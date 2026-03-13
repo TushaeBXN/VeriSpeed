@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)",
+      "Bash(cmake -B build -DCMAKE_BUILD_TYPE=Release 2>&1)",
+      "Bash(which cmake:*)",
+      "Bash(brew install:*)",
+      "Bash(cmake --build build --config Release --parallel 2>&1)",
+      "Bash(rm -rf /Users/dadsmacpro/VeriSpeed/build && cmake -B build -DCMAKE_BUILD_TYPE=Release 2>&1 && cmake --build build --config Release --parallel 2>&1)",
+      "Bash(which x86_64-w64-mingw32-g++ && x86_64-w64-mingw32-g++ --version 2>&1 | head -2)",
+      "Bash(cmake -B build-win \\\\\n  -DCMAKE_TOOLCHAIN_FILE=toolchain-mingw.cmake \\\\\n  -DCMAKE_BUILD_TYPE=Release \\\\\n  -DJUCE_DIR=JUCE 2>&1)",
+      "Bash(cmake --build build-win --config Release --parallel 2>&1)",
+      "Bash(git init:*)",
+      "Bash(git rm:*)"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+JUCE/
+build/
+build-win/
+.DS_Store
+*.o
+*.a
+*.vst3
+toolchain-mingw.cmake
+.claude/

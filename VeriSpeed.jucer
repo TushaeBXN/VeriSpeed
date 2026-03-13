@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="VeriSpeed"
+              name="VeriSpeed"
+              version="1.1.0"
+              companyName="Brian Tushae Thomas"
+              companyWebsite=""
+              companyEmail=""
+              companyShortName="BrTT"
+              displaySplashScreen="0"
+              reportAppUsage="0"
+              splashScreenColour="Dark"
+              projectType="audioplug"
+              bundleIdentifier="com.briantushae.verispeed"
+              juceFolderPath="JUCE"
+              buildVST3="1"
+              buildAU="0"
+              buildAUv3="0"
+              buildRTAS="0"
+              buildAAX="0"
+              buildStandalone="0"
+              enableIAA="0"
+              pluginName="VeriSpeed"
+              pluginDesc="Tape Varispeed Simulation"
+              pluginManufacturer="Brian Tushae Thomas"
+              pluginManufacturerCode="BrTT"
+              pluginCode="VrSp"
+              pluginChannelConfigs="{2, 2}"
+              pluginIsSynth="0"
+              pluginWantsMidiIn="0"
+              pluginProducesMidiOut="0"
+              pluginIsMidiEffectPlugin="0"
+              pluginEditorRequiresKeys="0"
+              pluginAUExportPrefix="VeriSpeedAU"
+              pluginRTASCategory=""
+              aaxIdentifier="com.briantushae.verispeed"
+              pluginVSTCategory="kPlugCategEffect"
+              pluginVST3Category="Fx"
+              pluginAUMainType="'aufx'"
+              jucerVersion="7.0.9"
+              useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0"
+              cppLanguageStandard="17">
+  <MAINGROUP id="VeriSpeed" name="VeriSpeed">
+    <GROUP id="Source" name="Source">
+      <FILE id="aa001" name="PluginProcessor.h"   compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="aa002" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="aa003" name="PluginEditor.h"      compile="0" resource="0"
+            file="Source/PluginEditor.h"/>
+      <FILE id="aa004" name="PluginEditor.cpp"    compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="aa005" name="VUMeter.h"           compile="0" resource="0"
+            file="Source/VUMeter.h"/>
+      <FILE id="aa006" name="VUMeter.cpp"         compile="1" resource="0"
+            file="Source/VUMeter.cpp"/>
+      <FILE id="aa007" name="PillButton.h"        compile="0" resource="0"
+            file="Source/PillButton.h"/>
+      <FILE id="aa008" name="PillButton.cpp"      compile="1" resource="0"
+            file="Source/PillButton.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+
+  <MODULES>
+    <MODULE id="juce_audio_basics"        showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices"       showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats"       showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors"    showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils"         showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core"                showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures"     showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp"                 showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events"              showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics"            showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics"          showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra"           showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+
+  <EXPORTFORMATS>
+    <XCODE_MAC
+      targetFolder="Builds/MacOSX"
+      customXcodeFlags=""
+      cppLanguageStandard="c++17"
+      osxSDK="default"
+      osxCompatibility="10.13"
+      extraLinkerFlags=""
+      extraCompilerFlags=""
+      mainGroup="VeriSpeed">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug"
+                       isDebug="1"
+                       optimisation="1"
+                       targetName="VeriSpeed"
+                       enablePluginBinaryCopyStep="1"
+                       vstBinaryLocation="~/Library/Audio/Plug-Ins/VST3"/>
+        <CONFIGURATION name="Release"
+                       isDebug="0"
+                       optimisation="3"
+                       targetName="VeriSpeed"
+                       enablePluginBinaryCopyStep="1"
+                       vstBinaryLocation="~/Library/Audio/Plug-Ins/VST3"/>
+      </CONFIGURATIONS>
+    </XCODE_MAC>
+
+    <VS2022
+      targetFolder="Builds/VisualStudio2022"
+      msBuildVersion="Current">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug"
+                       isDebug="1"
+                       optimisation="1"
+                       targetName="VeriSpeed"
+                       enablePluginBinaryCopyStep="0"/>
+        <CONFIGURATION name="Release"
+                       isDebug="0"
+                       optimisation="3"
+                       targetName="VeriSpeed"
+                       enablePluginBinaryCopyStep="0"/>
+      </CONFIGURATIONS>
+    </VS2022>
+  </EXPORTFORMATS>
+</JUCERPROJECT>

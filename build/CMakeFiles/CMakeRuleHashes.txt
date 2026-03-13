@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+9010f4f20f97ba43fd29c6470990e5dc VeriSpeed_artefacts/JuceLibraryCode/JuceHeader.h
+9967d28e71bcaa1144ae3085ff1ac0bd VeriSpeed_artefacts/JuceLibraryCode/VeriSpeed_VST3/PkgInfo

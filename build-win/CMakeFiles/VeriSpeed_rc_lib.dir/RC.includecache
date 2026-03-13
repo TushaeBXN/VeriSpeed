@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/dadsmacpro/VeriSpeed/build-win/VeriSpeed_artefacts/JuceLibraryCode/VeriSpeed_resources.rc
+windows.h
+-
+
