@@ -6,23 +6,6 @@
 #include "PillButton.h"
 
 //==============================================================================
-/**
- * VeriSpeedEditor
- *
- * UI layout:
- *
- *   ┌──────────────────────────────────────┐
- *   │  [Tempo_on]        Varispeed  1.1   │
- *   │                                      │
- *   │  -1 semitone      +1 semitone        │
- *   │  [KNOB L]  [VU METER]  [KNOB R]     │
- *   │             -5  0  +5               │
- *   │                  0                   │
- *   │            [ RESET ]                 │
- *   │  exclude:  [ @ ]                     │
- *   │       by Brian Tushae Thomas         │
- *   └──────────────────────────────────────┘
- */
 class VeriSpeedEditor : public juce::AudioProcessorEditor,
                          private juce::Timer
 {
@@ -35,12 +18,11 @@ public:
 
 private:
     void timerCallback() override;
-    void layoutComponents();
 
     VeriSpeedAudioProcessor& processor;
 
     //==========================================================================
-    // Knob look-and-feel (dark rubberized)
+    // Shared knob look-and-feel
     struct DarkKnobLF : public juce::LookAndFeel_V4
     {
         void drawRotarySlider (juce::Graphics&, int x, int y, int w, int h,
@@ -49,33 +31,53 @@ private:
                                juce::Slider&) override;
     } darkKnobLF;
 
+    // Shae Color knob gets a special gold-tinted LF
+    struct ColorKnobLF : public juce::LookAndFeel_V4
+    {
+        void drawRotarySlider (juce::Graphics&, int x, int y, int w, int h,
+                               float sliderPosProportional,
+                               float rotaryStartAngle, float rotaryEndAngle,
+                               juce::Slider&) override;
+    } colorKnobLF;
+
     //==========================================================================
     // Controls
-    PillButton tempoButton  { "Tempo On", PillButton::Style::Gold  };
-    PillButton resetButton  { "RESET",    PillButton::Style::Steel };
 
-    // Left knob: −1 semitone increment
-    juce::Slider leftKnob  { juce::Slider::RotaryVerticalDrag, juce::Slider::NoTextBox };
-    // Right knob: +1 semitone increment
-    juce::Slider rightKnob { juce::Slider::RotaryVerticalDrag, juce::Slider::NoTextBox };
+    // Tempo toggle
+    PillButton tempoButton { "Tempo On", PillButton::Style::Gold };
 
-    // Semitone readout
-    juce::Label semitoneLabel;
+    // Semitone step buttons (replaces two knobs)
+    PillButton semitoneDownBtn { "-1 st", PillButton::Style::Steel };
+    PillButton semitoneUpBtn   { "+1 st", PillButton::Style::Steel };
+
+    // Semitone fine-tune knob (hidden / ctrl-drag style, small)
+    juce::Slider semitoneKnob { juce::Slider::RotaryVerticalDrag, juce::Slider::NoTextBox };
+
+    // Shae Color knob
+    juce::Slider shaeColorKnob { juce::Slider::RotaryVerticalDrag, juce::Slider::NoTextBox };
+    juce::Label  shaeColorLabel;
+    juce::Label  shaeColorValueLabel;
 
     // VU meter
     VUMeter vuMeter;
 
-    // Exclude symbol input
-    juce::Label     excludeLabel;
+    // Semitone readout
+    juce::Label semitoneLabel;
+
+    // Reset
+    PillButton resetButton { "RESET", PillButton::Style::Steel };
+
+    // Exclude
+    juce::Label      excludeLabel;
     juce::TextEditor excludeEditor;
 
-    // Author label
+    // Author
     juce::Label authorLabel;
 
     //==========================================================================
     // APVTS attachments
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> leftKnobAttach;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> rightKnobAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> semitoneAttach;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> shaeColorAttach;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment> tempoAttach;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (VeriSpeedEditor)
