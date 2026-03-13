@@ -104,6 +104,9 @@ private:
     std::atomic<bool>  paramTempoOn     { false };
     std::atomic<float> paramShaeColor   { 0.0f };
 
+    // Smoothed semitone — glides to target over ~80ms, eliminates click/static
+    juce::SmoothedValue<float, juce::ValueSmoothingTypes::Linear> smoothedSemitones;
+
     double currentSampleRate = 44100.0;
     int    currentBlockSize  = 512;
 

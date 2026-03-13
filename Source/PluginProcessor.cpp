@@ -112,8 +112,12 @@ void VeriSpeedAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBl
     reverb.setParameters (reverbParams);
     reverb.reset();
 
+    // ── Smoothed semitone (80ms glide — eliminates click on step buttons) ─────
+    smoothedSemitones.reset (sampleRate, 0.08);
+    smoothedSemitones.setCurrentAndTargetValue (paramSemitones.load());
+
     // ── Smoothed color ────────────────────────────────────────────────────────
-    smoothedColor.reset (sampleRate, 0.05); // 50ms smoothing
+    smoothedColor.reset (sampleRate, 0.05);
     smoothedColor.setCurrentAndTargetValue (paramShaeColor.load());
 
     lfoPhase    = 0.0f;
@@ -275,7 +279,8 @@ void VeriSpeedAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     const int numSamples  = buffer.getNumSamples();
     const int numChannels = juce::jmin (buffer.getNumChannels(), 2);
 
-    const float semitones   = paramSemitones.load();
+    smoothedSemitones.setTargetValue (paramSemitones.load());
+    const float semitones   = smoothedSemitones.getNextValue();
     const double speedRatio = std::pow (2.0, static_cast<double> (semitones) / 12.0);
     currentSemitones.store (semitones);
 
